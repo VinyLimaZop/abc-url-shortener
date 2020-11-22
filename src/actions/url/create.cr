@@ -1,8 +1,9 @@
 class Url::Create < BrowserAction
   include Auth::AllowGuests
 
-  route do
-    #pp params.from_form_data["url:full_url"]
-    redirect to: Home::Index
+  post "/" do
+    SaveUrl.create(params) do |operation, url|
+      html Home::WelcomePage, op: SaveUrl.new, url_shortened: url
+    end
   end
 end
