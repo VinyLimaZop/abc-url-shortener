@@ -11,8 +11,8 @@ class Shared::Url::LinkToSlug < BaseComponent
     end
     para do
       strong "The url shortened is: "
-      a href: "localhost:3001/#{url_shortened.slug}" do
-        text "localhost:3001/#{url_shortened.slug}"
+      a href: "/#{url_shortened.slug}", target: "_blank" do
+        text "#{Lucky::RouteHelper.new(:get, "#{url_shortened.slug}").url}"
       end
     end
   end
